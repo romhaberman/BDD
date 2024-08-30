@@ -10,10 +10,10 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class DashboardPage {
+    private ElementsCollection cards = $$(".list__item div");
     private final String balanceStart = "баланс: ";
     private final String balanceFinish = " р.";
     private SelenideElement heading = $("[data-test-id=dashboard]");
-    private ElementsCollection cards = $$(".list__item div");
     private final SelenideElement reloadButton = $("[data-test-id='action-reload']");
 
 
@@ -21,7 +21,7 @@ public class DashboardPage {
         heading.shouldBe(visible);
     }
 
-    public int getCardBalance(int maskedCardNumber) {
+    public int getCardBalance(String maskedCardNumber) {
         var text = cards.findBy(Condition.text(maskedCardNumber)).getText();
         return extractBalance(text);
     }
