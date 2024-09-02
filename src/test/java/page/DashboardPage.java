@@ -24,7 +24,7 @@ public class DashboardPage {
     public int getCardBalance(String maskedCardNumber) {
         var text = cards.findBy(Condition.text(maskedCardNumber)).getText();
         return extractBalance(text);
-    }    
+    }
 
     public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo) {
         cards.findBy(Condition.attribute("data-test-id", cardInfo.getTestId())).$("button").click();
