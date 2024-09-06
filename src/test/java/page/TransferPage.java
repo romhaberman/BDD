@@ -32,16 +32,9 @@ public class TransferPage {
         transferButton.click();
     }
 
-       
+
     public void findErrorMessage(String expectedText) {
         errorMessage.shouldHave(exactText(expectedText), Duration.ofSeconds(15)).shouldBe(visible);
     }
 
-    public boolean isErrorMessageDisplayed() {
-        return false;
-    }
-
-    public String getErrorMessageText() {
-        return null;
-    }
 }

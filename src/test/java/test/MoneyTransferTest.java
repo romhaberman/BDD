@@ -51,15 +51,6 @@ public class MoneyTransferTest {
         var amount = DataHelper.generateInValidAmount(secondCardBalance);
         var transferPage = dashboardPage.selectCardToTransfer(firstCardInfo);
         transferPage.makeTransfer(String.valueOf(amount), secondCardInfo);
-
-        // Проверка появления сообщения об ошибке
-        assertTrue(transferPage.isErrorMessageDisplayed(), "Сообщение об ошибке не появилось");
-
-        // Проверка текста сообщения об ошибке (может быть неявным, например, "Недостаточно средств")
-        String errorMessage = transferPage.getErrorMessageText();
-        assertTrue(errorMessage.contains("Недостаточно средств") || errorMessage.contains("Ошибка"),
-                "Сообщение об ошибке не содержит ожидаемого текста");
-
         transferPage.findErrorMessage("Выполнена попытка перевода суммы, превышающей остаток на карте списания");
         dashboardPage.reloadDashboardPage();
         var actualBalanceFirstCard =  dashboardPage.getCardBalance(getMaskedNumber(firstCardInfo.getCardNumber()));
